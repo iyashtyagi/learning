@@ -2,14 +2,6 @@ const express = require("express");
 const port = 3000;
 const app = express();
 
-const user = [{
-    name : "Yash",
-    kidney: [{
-        healty: true
-    },{
-        healty: false
-    }]
-}]
 
 app.get('/',(req,res)=>{
     res.json(user);

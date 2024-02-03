@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon week\\ 2/node-starter/http-server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
