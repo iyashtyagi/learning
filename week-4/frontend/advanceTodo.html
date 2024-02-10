@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance todo</title>
+</head>
+<body>
+    <div id="todoInput">
+    <input type="text" id="todo-title" placeholder="title"> <br><br>
+    <input type="text" id="todo-description" placeholder="description"><br><br>
+    <button onclick="todoAdder()">Save todo</button>
+    <hr>
+    </div>
+
+    <div id="container"></div>
+
+    <script>
+        function todoAdder(){
+            const title = document.getElementById('todo-title');
+            const descri = document.getElementById('todo-description');
+
+            const newTodo = document.createElement('div');
+            const titleNew = document.createElement('div');
+            const descriNew = document.createElement('div');
+            const button = document.createElement('button');
+
+            titleNew.innerHTML = title.value;
+            descriNew.innerHTML = descri.value;
+            button.textContent = 'DELETE';
+
+            newTodo.append(titleNew,descriNew,button);
+            document.getElementById('container').append(newTodo);
+            // container.appendChild(newTodo)
+            button.onclick = ()=> container.removeChild(newTodo);
+            
+        }
+    </script>
+
+    <!-- <script>
+        let n = 0;
+        function todoAdder(){
+            const todoId =`todo-${n++}`;
+            const title = document.getElementById('todo-title');
+            const description = document.getElementById('todo-description');
+            const todoDiv = document.createElement('div');
+            const titleDiv = document.createElement('div');
+            const descriptionDiv = document.createElement('div');
+            const button = document.createElement('button');
+            todoDiv.id = todoId;
+            titleDiv.innerHTML = `Title : ${title.value}`;
+            descriptionDiv.innerHTML = `Description : ${description.value}`;
+            button.textContent = 'Delete';
+            button.onclick = function(){
+                deleteTodo(todoId);
+            };
+
+            button.addEventListener()
+
+            todoDiv.append(titleDiv,descriptionDiv,button);
+            document.getElementById('container').append(todoDiv);
+            title.value = "";
+            description.value = "";
+        }
+
+        function deleteTodo(todoId){
+            document.getElementById(todoId).remove();
+        }
+    </script> -->
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+
+    <head>
+        <title>Basic todo</title>
+    </head>
+
+    <body>
+        
+    <div class="todo">
+        <input type="text" id="todo-title" placeholder="title"><br><br>
+        <input type="text" id="todo-description" placeholder="description"><br><br>
+        <button onclick="todoAdder()">Save todo</button>
+        <hr>
+    </div>
+
+    <div class="display-todo"></div>
+
+
+    <script>
+        let n = 0;
+        function todoAdder(){
+            const divId = n++;
+            const title = document.getElementById("todo-title");
+            const description = document.querySelector("#todo-description");
+            const deleteButton = `<button onclick="todoDelete(${divId})" >Delete</button>`;
+            document.querySelector(".display-todo").innerHTML += `<div id=${divId} >${title.value} <br> ${description.value} <br> ${deleteButton}</div>`;
+            title.value = "";
+            description.value = "";
+        }
+        function todoDelete(divId){
+            const removeTodo = document.getElementById(divId);
+            removeTodo.remove();
+        }
+    </script>
+
+    </body>
+</html>
