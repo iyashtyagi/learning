@@ -16,57 +16,103 @@
     <div id="container"></div>
 
     <script>
-        function todoAdder(){
-            const title = document.getElementById('todo-title');
-            const descri = document.getElementById('todo-description');
-
-            const newTodo = document.createElement('div');
-            const titleNew = document.createElement('div');
-            const descriNew = document.createElement('div');
-            const button = document.createElement('button');
-
-            titleNew.innerHTML = title.value;
-            descriNew.innerHTML = descri.value;
-            button.textContent = 'DELETE';
-
-            newTodo.append(titleNew,descriNew,button);
-            document.getElementById('container').append(newTodo);
-            // container.appendChild(newTodo)
-            button.onclick = ()=> container.removeChild(newTodo);
-            
-        }
-    </script>
-
-    <!-- <script>
         let n = 0;
+        todoArray = [
+        {"id": 1, "title": "Buy groceries", "description": "Milk, eggs, bread"},
+        {"id": 2, "title": "Finish report", "description": "Due on Friday"},
+        {"id": 3, "title": "Call mom", "description": "Wish her a happy birthday"},
+        {"id": 4, "title": "Go to the gym", "description": "Leg day"},
+        {"id": 5, "title": "Read book", "description": "Chapter 3-5"},
+        {"id": 6, "title": "Pay bills", "description": "Electricity and internet"},
+        {"id": 7, "title": "Attend meeting", "description": "Team status update"},
+        {"id": 8, "title": "Fix bike", "description": "Puncture in the rear tire"},
+        {"id": 9, "title": "Plan vacation", "description": "Research destinations"},
+        {"id": 10, "title": "Cook dinner", "description": "Pasta with tomato sauce"}
+        ]
+
+        // one way to do it
+        // function todoAdder(){
+        //     const todoId =`todo-${n++}`;
+        //     const title = document.getElementById('todo-title');
+        //     const description = document.getElementById('todo-description');
+        //     const todoDiv = document.createElement('div');
+        //     const titleDiv = document.createElement('div');
+        //     const descriptionDiv = document.createElement('div');
+        //     const button = document.createElement('button');
+        //     todoDiv.id = todoId;
+        //     titleDiv.innerHTML = `Title : ${title.value}`;
+        //     descriptionDiv.innerHTML = `Description : ${description.value}`;
+        //     button.textContent = 'Delete';
+        //     button.onclick = function(){
+        //         deleteTodo(todoId);
+        //     };
+
+        //     todoDiv.append(titleDiv,descriptionDiv,button);
+        //     document.getElementById('container').append(todoDiv);
+        //     title.value = "";
+        //     description.value = "";
+        // }
+        
+       
+        
+        function dynamicTodo(todoArray){
+            const container = document.getElementById("container");
+            container.innerHTML = ""
+            todoArray.forEach(todo => {
+                container.appendChild(createChild(todo.title, todo.description, todo.id));
+            });
+        }
+
+        window.setInterval(async ()=>{
+            const res = await (await fetch("https://sum-server.100xdevs.com/todos")).json();
+            dynamicTodo(res.todos)
+            
+        },1000)
+        // dynamicTodo(todoArray);
+
+        // another way to do it
+        function createChild(title,description,id){
+            const todoDiv = document.createElement("div");
+            const titleDiv = document.createElement("div");
+            const descriptionDiv = document.createElement("div");
+            const delButton = document.createElement("button");
+            const doneButton = document.createElement("button");
+
+            titleDiv.innerHTML = `Title : ${title}`;
+            descriptionDiv.innerHTML = `Description : ${description}`;
+            delButton.innerText = "Delete";
+            doneButton.innerText = "Mark as done";
+
+            todoDiv.setAttribute("id",id);
+            delButton.setAttribute("onclick", `deleteTodo("${id}")`);
+            doneButton.setAttribute("onclick", `doneTodo("${id}")`)
+
+            todoDiv.append(titleDiv,descriptionDiv,delButton,doneButton);
+            return todoDiv;
+        }
+
         function todoAdder(){
-            const todoId =`todo-${n++}`;
-            const title = document.getElementById('todo-title');
-            const description = document.getElementById('todo-description');
-            const todoDiv = document.createElement('div');
-            const titleDiv = document.createElement('div');
-            const descriptionDiv = document.createElement('div');
-            const button = document.createElement('button');
-            todoDiv.id = todoId;
-            titleDiv.innerHTML = `Title : ${title.value}`;
-            descriptionDiv.innerHTML = `Description : ${description.value}`;
-            button.textContent = 'Delete';
-            button.onclick = function(){
-                deleteTodo(todoId);
-            };
+            const todoId = `todo-${n++}`;
+            const title = document.getElementById("todo-title");
+            const description = document.getElementById("todo-description");
+            const container =  document.getElementById("container");
+            
+            const todoDiv = createChild(title.value, description.value, todoId);
+            container.appendChild(todoDiv);
 
-            button.addEventListener()
-
-            todoDiv.append(titleDiv,descriptionDiv,button);
-            document.getElementById('container').append(todoDiv);
             title.value = "";
-            description.value = "";
+            description.value ="";
+        }
+
+        function doneTodo(todoId){
+            const todoDiv = document.getElementById(todoId);
+            todoDiv.children[3].innerHTML = "Done";
         }
 
         function deleteTodo(todoId){
             document.getElementById(todoId).remove();
         }
-    </script> -->
+    </script>
 
 </body>
 </html>
