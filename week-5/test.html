@@ -1,0 +1,44 @@
+https://fakerapi.it/api/v1/images?_quantity=10
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+    </div>
+
+    <script>
+        function newComponent(url,name,email){
+            const parentComponent = document.createElement("div");
+            const profilePic = document.createElement("img");
+            const nameComponent = document.createElement("h3");
+            const emailComponent = document.createElement("p");
+            const breakComponent = document.createElement("hr");
+            profilePic.setAttribute("src",url);
+            nameComponent.innerText = `Name: ${name}`;
+            emailComponent.innerText = `Email: ${email}`;
+            parentComponent.append(profilePic,nameComponent,emailComponent,breakComponent);
+            return parentComponent;
+        }
+
+        async function demoData(){
+            const container = document.getElementById("container");
+            const dataArray = await (await fetch("http://localhost:3000/")).json();
+            console.log(dataArray);
+            dataArray.forEach(element => {
+
+                const comp = newComponent(element.profileUrl, element.name, element.email);
+                console.log(comp);
+                container.appendChild(comp);
+            });
+        }
+        demoData();
+
+
+    </script>
+</body>
+</html>

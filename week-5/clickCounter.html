@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click coutner</title>
+</head>
+<body>
+    
+    <div id="btn">
+    </div>
+
+    <script>
+        // function buttonClickCounter(id){
+        //     const button = document.getElementById(id);
+        //     const value = button.innerText.split(" ");
+        //     parseInt(value[1]++).toString();
+        //     button.innerText =  value.join(" ");
+        // }
+
+        // Another way
+        let state = {
+            count : 0
+        }
+
+        function onButtonPress(){
+            state.count++;
+            buttonComponentReRender()
+        }
+
+        function buttonComponentReRender(){
+            document.getElementById("btn").innerHTML = "";
+            const component = buttonComponent(state.count);
+            document.getElementById("btn").appendChild(component);             
+        }
+
+        function buttonComponent(count){
+            const button = document.createElement("button");
+            button.innerHTML = `Counter ${count}`;
+            button.setAttribute("onClick", "onButtonPress()");
+            button.setAttribute("id", "btn");
+            return button;
+        }
+
+        buttonComponentReRender();
+
+
+    </script>
+
+</body>
+</html>
