@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors())
 const chance = new Chance();
-
+const count = 0;
 
 app.get("*",(req,res)=>{
     
@@ -24,9 +24,9 @@ app.get("*",(req,res)=>{
             name,
             email
         });
-        console.log("res sent");
+        console.log(`res send ${count}`);
     }
     res.json(users);
 })
 
-app.listen(port);
+app.listen(port);f
