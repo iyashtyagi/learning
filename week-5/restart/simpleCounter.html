@@ -1,0 +1,24 @@
+<head>
+    <title>Counter</title>
+</head>
+
+<body>
+    <div>
+        <button id="clickCounterBtn">Click me 0</button>
+    </div>
+
+    <script>
+
+        let count = 0; 
+
+	    const counterBtn = document.getElementById("clickCounterBtn");
+	    counterBtn.addEventListener("click",btnLogger);
+        
+        function btnLogger(){
+			count++;
+			counterBtn.innerHTML = `Click me ${count}`;
+        }
+
+    </script>
+
+</body>

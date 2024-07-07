@@ -1,0 +1,40 @@
+<head>
+    <title> State Counter</title>
+</head>
+
+<body>
+
+    <div id="container">
+
+    </div>
+
+    <script>
+        let state = {
+            count : 0
+        }
+
+        function onPress(){
+            state.count++;   
+            btnComponentRender();
+        }
+
+        function btnComponentRender(){
+            const container = document.getElementById("container");
+            container.innerHTML = "";
+            const btnComponent = btnComponentGen(state.count);
+            container.appendChild(btnComponent);
+        }
+
+        function btnComponentGen(count){
+            const btnComponent = document.createElement("button");
+            btnComponent.setAttribute("id","counterBtn");
+            btnComponent.addEventListener("click", onPress);
+            btnComponent.innerHTML = `Counter ${count}`;
+            return btnComponent;
+        }
+
+        btnComponentRender()
+
+    </script>
+
+</body>
