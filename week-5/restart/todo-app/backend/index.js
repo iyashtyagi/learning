@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
+const cors = require("cors");
 const {inputDataValidator, inputIdValidator} = require("./dataTypesValidator");
 const { todo } = require("./db");
 
@@ -8,6 +9,7 @@ const port = 3000;
 const dbConnectionString = process.env.DB_CONNECTION_STRING;
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 mongoose.connect(dbConnectionString);
 
