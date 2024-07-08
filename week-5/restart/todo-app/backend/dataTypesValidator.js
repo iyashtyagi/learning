@@ -2,8 +2,7 @@ const {inputData,inputId} = require("./inputTypes");
 
 function inputDataValidator(req,res,next){
     
-    const {title, description} = req.body;
-    const isValidData = inputData.safeParse({title,description});
+    const isValidData = inputData.safeParse(req.body);
     if(!isValidData.success){
         res.status(401).json({msg : "Invalid input" });
         return;
@@ -14,8 +13,7 @@ function inputDataValidator(req,res,next){
 
 function inputIdValidator(req,res,next){
 
-    const {id} = req.body;
-    const isValidId = inputId.safeParse({id});
+    const isValidId = inputId.safeParse(req.body);
     
     if(!isValidId.success){
         res.status(401).json({msg: "Invalid input"});
