@@ -29,7 +29,7 @@ app.post("/todo", inputDataValidator, (req,res)=>{
     const {title, description} = req.body;
     // validate the data
     // add todo in the database
-    todos = [...todos, {title, description, completed : false}];
+    todos.push({title, description, completed : false});
     res.json({status : 202, data: {"msg" : "added successfully "}})
 })
 

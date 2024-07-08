@@ -4,7 +4,6 @@ function inputDataValidator(req,res,next){
     
     const {title, description} = req.body;
     const isValidData = inputData.safeParse({title,description});
-
     if(!isValidData.success){
         res.status(401).json({msg : "Invalid input" });
         return;
