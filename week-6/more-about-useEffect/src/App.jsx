@@ -3,15 +3,25 @@ import axios from 'axios'
 
 export default function App(){
 
+    const [todoId, setTodoId] = useState("1");
+
+    function todoIdUpdator(e){
+        setTodoId(e.target.textContent);
+    }
+
     return(
         <>
-            <Todo id={3}></Todo>
+            <button onClick={todoIdUpdator}>1</button>
+            <button onClick={todoIdUpdator}>2</button>
+            <button onClick={todoIdUpdator}>3</button>
+            <Todo id={todoId}></Todo>
         </>
     )
 }
 
 
 function Todo({id}){
+    console.log(id);
     const [todo, setTodo] = useState({});
 
     useEffect(()=>{
@@ -19,7 +29,7 @@ function Todo({id}){
         .then((res)=>{
             setTodo(res.data.todo);
         })
-    },[])
+    },[id])
 
     return (
         <div key={todo.id}>
