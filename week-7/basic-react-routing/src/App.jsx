@@ -8,8 +8,8 @@ export default function App(){
 
     return (
         <>
-            <NavBar></NavBar>
             <BrowserRouter>
+                <NavBar></NavBar>
                 <Routes>
                     <Route path="/dashboard" element={<Dashboard/>} />
                     <Route path="/" element = {<Landing/>} />
