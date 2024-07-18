@@ -1,4 +1,4 @@
-import { RecoilRoot, useRecoilState, useSetRecoilState } from "recoil";
+import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { countAtom } from "./store/atoms/count";
 
 export default function App(){
@@ -21,7 +21,7 @@ function Count() {
 }
 
 function CountRender(){
-    const count = useRecoilState(countAtom);
+    const count = useRecoilValue(countAtom);
     return (
         <div>
             <b>
