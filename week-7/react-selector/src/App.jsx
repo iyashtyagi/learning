@@ -1,5 +1,5 @@
 import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { countAtom } from "./store/atoms/count";
+import { countAtom, evenSelector } from "./store/atoms/count";
 import { useMemo } from "react";
 
 export default function App(){
@@ -55,13 +55,23 @@ function Buttons(){
 // }
 
 // Optimised way of doing it
+// function EvenCountRender(){
+//     const count = useRecoilValue(countAtom);
+
+//     const isEven = useMemo(()=>{
+//         return count%2==0;
+//     },[count])
+
+//     return(
+//         <div>
+//             {isEven?"It is even":null}
+//         </div>
+//     )
+// }
+
+// Using recoil selector to optimise it
 function EvenCountRender(){
-    const count = useRecoilValue(countAtom);
-
-    const isEven = useMemo(()=>{
-        return count%2==0;
-    },[count])
-
+    const isEven = useRecoilValue(evenSelector);
     return(
         <div>
             {isEven?"It is even":null}
