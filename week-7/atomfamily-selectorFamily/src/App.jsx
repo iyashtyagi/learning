@@ -11,7 +11,6 @@ export default function App(){
             <Todo id={3}/>
             <Todo id={4}/>
             <Todo id={5}/>
-            <Todo id={6}/>
         </RecoilRoot>
         
     </>)
@@ -22,9 +21,9 @@ function Todo({id}){
 
     return(
         <div>
-            {currentTodo.id}
-            <p><b>Title: </b>{currentTodo.title}</p>
-            <p><b>Description: </b>{currentTodo.description}</p>
+            {currentTodo?.id}
+            <p><b>Title: </b>{currentTodo?.title}</p>
+            <p><b>Description: </b>{currentTodo?.description}</p>
         </div>
     )
 }

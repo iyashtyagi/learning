@@ -22,7 +22,7 @@ export const todoAtomsFamily = atomFamily({
     default: selectorFamily({
         key : "todoSelectorFamily",
         get : (id) => async({get}) => {
-            let todo = (await axios.get(`https://sum-server.100xdevs.com/todo?id=${id}`)).data;
+            let todo = (await axios.get(`https://sum-server.100xdevs.com/todo?id=${id}`)).data.todo;
             return todo;
         }
     })
