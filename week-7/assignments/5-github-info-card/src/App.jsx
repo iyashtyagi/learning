@@ -1,6 +1,6 @@
 import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil"
 import { userSelectorAtom, usernameAtom } from "./atoms/githubAtom"
-import { Suspense, useState } from "react";
+import React, { Suspense, useState } from "react";
 
 export default function App(){
 
@@ -20,7 +20,6 @@ function GithubInfoCard(){
     const userData = useRecoilValue(userSelectorAtom);
 
     function onClickHandler(){
-        console.log("re-render");
         setUsername(inputValue);
         setInputValue("");
     }
@@ -34,7 +33,7 @@ function GithubInfoCard(){
     )
 }
 
-function Card({userData}){
+const Card = React.memo(({userData})=>{
     console.log(userData)
 
     if (!userData) {
@@ -52,7 +51,7 @@ function Card({userData}){
     return(<div id="container">
         <p><b>Username : </b>{userData.login}</p>
         <img src={userData.avatar_url} alt={`${userData.login}_avatar`}/>
-        {JSON.stringify(userData)}
+        <pre>{JSON.stringify(userData, null, 2)}</pre>
     </div>)
 
-}
+})
