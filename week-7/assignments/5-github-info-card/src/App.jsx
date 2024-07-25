@@ -50,7 +50,12 @@ const Card = React.memo(({userData})=>{
 
     return(<div id="container">
         <p><b>Username : </b>{userData.login}</p>
+        <p><b>Name : </b>{userData.name}</p>
+        <p><b>Followers : </b>{userData.followers}</p>
+        <p><b>Following : </b>{userData.following}</p>
+        <p><b>Public repos: </b> : {userData.public_repos}</p>
         <img src={userData.avatar_url} alt={`${userData.login}_avatar`}/>
+
         <pre>{JSON.stringify(userData, null, 2)}</pre>
     </div>)
 
