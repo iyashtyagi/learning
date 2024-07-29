@@ -7,16 +7,39 @@
 </head>
 <body>
     <div id="root">
-        <div id="navbar" style="background: red ;display: flex; justify-content: space-between; margin-left: 100px; margin-right: 100px ;">
-            <img src="https://zerodha.com/static/images/logo.svg" alt="Zerodha" height="17px">
-            <div style="background: blue ;display: flex; justify-content: space-evenly;">
-                <div>Signup</div>
-                <div>About</div>
-                <div>Products</div>
-                <div>Pricing</div>
-                <div>Support</div>
+        <div id="navbar" style="box-shadow: 0px .1px ;display: flex; justify-content: space-between; padding-left: 100px; padding-right: 100px ;">
+            <img class="link-btn" src="https://zerodha.com/static/images/logo.svg" alt="Zerodha" height="18px">
+            <div style="display: flex; justify-content: space-evenly;">
+                <div class="link-btn">Signup</div>
+                <div class="link-btn">About</div>
+                <div class="link-btn">Products</div>
+                <div class="link-btn">Pricing</div>
+                <div class="link-btn">Support</div>
             </div>
         </div>
+
+        <div style="display: flex; flex-direction: column ;align-items: center; margin-top: 40px;">
+            
+            <img style="max-height: 45vh;" src="https://zerodha.com/static/images/landing.png" alt="landing-page" />
+            
+            <h1 style="font-size: 44px;">Invest in everything</h1>
+            <h5 style="font-size: 20px;">Online platform to invest in stocks, derivatives, mutual funds, and more</h5>
+            <a class="link-btn" href="/" style="font-weight: bold;padding: 10px 20px; background: #387ed1; color: #fff; text-decoration:none; border-radius: 3px;"> Sign up now</a>
+
+        </div>
     </div>
+    <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        .link-btn{
+            padding: 20px;
+        }
+
+        .link-btn:hover{
+            cursor:pointer;
+        }
+    </style>
 </body>
 </html>
