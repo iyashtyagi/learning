@@ -33,7 +33,24 @@ export default function App(){
             </div>
         </div>
 
+        <br/>
+
+        {/* responsive */}
+        <div className ='grid md:grid-cols-3'> 
+            <div className="bg-black text-white">
+                This is div 1
+            </div>
+            <div className="bg-blue-500 text-white">
+                This is div 2
+            </div>
+            <div className="bg-yellow-300">
+               This is div 3
+            </div>
+        </div>
         </>
+
+
+
         
     )
 }  
