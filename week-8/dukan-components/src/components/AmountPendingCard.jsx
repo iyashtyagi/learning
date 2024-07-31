@@ -8,9 +8,9 @@ export const AmountPendingCard = ({amount, orders })=>{
                 </svg>
 
             </div>
-            <div className="flex justify-between ">
-                <p className="text-3xl font-medium">₹{amount}</p>
-                <div className="flex text-blue-500 underline">
+            <div className="flex justify-between font-medium">
+                <p className="text-3xl">₹{amount}</p>
+                <div className="flex items-center text-blue-500 underline">
                     <p>{orders} Orders</p>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
