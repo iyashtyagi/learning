@@ -1,5 +1,5 @@
 export const AmountProcessedCard = ({amount}) =>{
-    return <div className="grid grid-cols-1 gap-4 shadow-sm rounded p-5">
+    return <div className="grid grid-cols-1 gap-4 bg-white shadow-sm rounded p-5 min-w-[300px]">
 
         <div className="flex text-gray-500">
             <p>Amount Processed</p>
