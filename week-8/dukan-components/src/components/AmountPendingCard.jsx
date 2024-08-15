@@ -1,6 +1,6 @@
 export const AmountPendingCard = ({amount, orders })=>{
     return(
-        <div className="grid grid-cols-1 gap-4 bg-white rounded shadow-sm p-5">
+        <div className="grid grid-cols-1 gap-4 bg-white rounded-lg shadow-sm p-5">
             <div className="flex gap-1 text-gray-500">
                 <p>Amount Pending</p>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

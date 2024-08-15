@@ -1,5 +1,5 @@
 export const NewPayoutCard = ({amount, orders}) =>{
-    return <div className="text-white bg-[#146fb5] hover:bg-[#0f4f83] rounded shadow-sm">
+    return <div className="text-white bg-[#146fb5] hover:bg-[#0f4f83] rounded-lg shadow-sm">
         <div className="flex flex-col gap-4 p-5 ">
             <div className="flex">
                 <p>Next Payout</p>
