@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const {userSchema} = require("../utils/zodUtil");
+const {signupSchema, signinSchema} = require("../utils/zodUtil");
 const {jwtGen} = require("../utils/jwtUtil");
 const { User } = require("../db");
 
 
 router.post("/signup",async (req,res)=>{
-    const {success} = userSchema.safeParse(req.body);
+    const {success} = signupSchema.safeParse(req.body);
     
     if(!success){
         return res.status(411).json({message: "Email already taken / Incorrect inputs"});
@@ -28,10 +28,15 @@ router.post("/signup",async (req,res)=>{
 
 router.post("/signin",async (req,res)=>{
     const {email, password} = req.body;
+    const {success} = signinSchema.safeParse({email, password});
+    if(!success){
+        return res.status(411).json({"message" : "Error while logging in"});
+    }
+
     const user = await User.findOne({email, password});
     
     if(!user){
-        return res.status(411).json({"message" : "Error while logging in"})
+        return res.status(411).json({"message" : "Error while logging in"});
     }
 
     const token = jwtGen({userId : user._id});
