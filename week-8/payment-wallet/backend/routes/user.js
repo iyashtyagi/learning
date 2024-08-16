@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {signupSchema, signinSchema} = require("../utils/zodUtil");
+const {signupSchema, signinSchema, updateUserSchema} = require("../utils/zodUtil");
 const {jwtGen} = require("../utils/jwtUtil");
 const { User } = require("../db");
 const { authMiddleware } = require("../middleware");
@@ -23,7 +23,7 @@ router.post("/signup",async (req,res)=>{
     const newUser = await User.create({email, firstName, lastName, password});
     const token = jwtGen({userId:newUser._id});
 
-    res.status(200).json({message: "User created successfully",token})
+    return res.status(200).json({message: "User created successfully",token})
 })
 
 
@@ -41,7 +41,26 @@ router.post("/signin",async (req,res)=>{
     }
 
     const token = jwtGen({userId : user._id});
-    res.status(200).json({token});
+    return res.status(200).json({token});
+})
+
+router.put("/",authMiddleware ,async (req,res)=>{
+    const {success, data} = updateUserSchema.safeParse(req.body);
+
+    if(!success || !data){
+        return res.status(411).json({"message" : "Error while updating information"});
+    }
+
+    const {userId} = req.headers;
+
+    try {
+        await User.findByIdAndUpdate(userId,data);
+    }
+    catch{
+        return res.status(411).json({"message" : "Error while updating information"});
+    }
+
+    return res.status(200).json({"message" : "Updated successfully"});
 })
 
 module.exports = router;

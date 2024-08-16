@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const dotenv = require("dotenv").config();
+const { DB_CONNECTION_STRING } = require("./config");
 
 const userSchema = mongoose.Schema({
     email : String,
@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
 const User = mongoose.model("user", userSchema);
 
 const dbConnect = async () =>{
-    const dbUrl = process.env.DB_CONNECTION_STRING;
+    const dbUrl = DB_CONNECTION_STRING;
     await mongoose.connect(dbUrl);
     console.log("Database connected successfully");
 } 
