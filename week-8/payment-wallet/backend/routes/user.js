@@ -3,6 +3,7 @@ const router = express.Router();
 const {signupSchema, signinSchema} = require("../utils/zodUtil");
 const {jwtGen} = require("../utils/jwtUtil");
 const { User } = require("../db");
+const { authMiddleware } = require("../middleware");
 
 
 router.post("/signup",async (req,res)=>{
