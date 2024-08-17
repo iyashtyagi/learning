@@ -20,8 +20,11 @@ const updateUserSchema = zod.object({
     message : "At least one field must be present",
 })
 
+const userSearchSchema = zod.string().min(1).regex(/^[a-zA-Z\s]+$/);
+
 module.exports = {
     signinSchema,
     signupSchema,
-    updateUserSchema
+    updateUserSchema,
+    userSearchSchema
 }

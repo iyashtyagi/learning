@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {signupSchema, signinSchema, updateUserSchema} = require("../utils/zodUtil");
+const {signupSchema, signinSchema, updateUserSchema, userSearchSchema} = require("../utils/zodUtil");
 const {jwtGen} = require("../utils/jwtUtil");
 const { User } = require("../db");
 const { authMiddleware } = require("../middleware");
@@ -47,7 +47,7 @@ router.post("/signin",async (req,res)=>{
 router.put("/",authMiddleware ,async (req,res)=>{
     const {success, data} = updateUserSchema.safeParse(req.body);
 
-    if(!success || !data){
+    if(!success){
         return res.status(411).json({"message" : "Error while updating information"});
     }
 
@@ -61,6 +61,24 @@ router.put("/",authMiddleware ,async (req,res)=>{
     }
 
     return res.status(200).json({"message" : "Updated successfully"});
+})
+
+router.get("/bulk",authMiddleware, async(req,res)=>{
+
+    const {filter} = req.query;
+    const {success} = userSearchSchema.safeParse(filter);
+    if(!success){
+        return res.status(200).json({users: []});
+    }
+    
+    const users = await User.find({
+        $or: [
+            { firstName : {$regex : filter, $options :"i"}},
+            { lastName : {$regex : filter, $options :"i"}}
+        ]
+    }, "_id firstName lastName");
+
+    return res.status(200).json({users});
 })
 
 module.exports = router;
