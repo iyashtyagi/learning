@@ -22,9 +22,15 @@ const updateUserSchema = zod.object({
 
 const userSearchSchema = zod.string().min(1).regex(/^[a-zA-Z\s]+$/);
 
+const transactionSchema = zod.object({
+    to : zod.string().min(6).regex(/^[a-zA-z0-9]+$/),
+    amount : zod.number().gt(0)
+})
+
 module.exports = {
     signinSchema,
     signupSchema,
     updateUserSchema,
-    userSearchSchema
+    userSearchSchema,
+    transactionSchema,
 }
