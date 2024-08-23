@@ -14,6 +14,7 @@ export default function App(){
             <Route path="/signin" element={<SigninPage />}></Route>
             <Route path="/dashboard" element={<DashboardPage />}></Route>
             <Route path="/send" element={<SendPage />}></Route>
+            <Route path="*" element = {<SignupPage />}></Route>
         </Routes>
     </BrowserRouter>
 
