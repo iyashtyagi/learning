@@ -7,8 +7,9 @@ const client = new Client({
     connectionString : process.env.DB_STRING
 })
 
+client.connect();
+
 async function createTable(){
-    await client.connect();
     const result = await client.query(`
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
@@ -23,4 +24,16 @@ async function createTable(){
 
 }
 
-createTable();
+async function insertData() {
+    try{
+        const insertQuery = `INSERT INTO users (username, email, password) VALUES ('yash2', 'yash2@gmail.com', 'testing')`;
+        const res = await client.query(insertQuery);
+        console.log(`Insertion success: ${JSON.stringify(res)}`);
+    }
+    catch(err){
+        console.error(`Something went wrong: ${err}`);
+    }
+    await client.end(); 
+}
+
+insertData();
