@@ -24,6 +24,20 @@ async function createTable(){
 
 }
 
+async function createAddressTable() {
+    const query = `CREATE TABLE address(id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    country VARCHAR(100) NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    pincode VARCHAR(10),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+    )`;
+    const res = await client.query(query);
+    console.log(res);
+}
+
 async function insertData() {
     try{
         const insertQuery = `INSERT INTO users (username, email, password) VALUES ('yash2', 'yash2@gmail.com', 'testing')`;
@@ -56,4 +70,22 @@ async function getUser(email:string){
     }
 }
 
-getUser("yash2@gmail.com");
+async function insertDataIntoAddress(){
+    const query = `INSERT INTO address(user_id, city, country, street, pincode) VALUES ($1, $2, $3, $4, $5)`;
+    const values = [1, "Sonipat", "India", "123 random", '100001'];
+    const result = await client.query(query,values);
+    console.log(result); 
+}
+
+async function getAllData(){
+    const data = await client.query('SELECT * FROM ADDRESS');
+    console.log(data.rows);
+}
+
+async function getDataByJoin(){
+    const query = `SELECT * FROM users u JOIN address a ON u.id = a.user_id`;
+    const result = await client.query(query);
+    console.log(result.rows);
+}
+
+getDataByJoin();
