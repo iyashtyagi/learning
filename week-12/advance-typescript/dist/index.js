@@ -3,9 +3,14 @@ function updateUser(updatedProps) {
     // hit the db
     console.log(`Update user: \nName: ${updatedProps.name} \nAge: ${updatedProps.age} \nEmail: ${updatedProps.email}`);
 }
-const user = {
+const user1 = {
     name: "yash",
     age: 23,
     email: "contactyashtyagi@gmail.com"
 };
-updateUser(user);
+const user2 = {
+    name: "yash",
+    age: 23,
+};
+updateUser(user1);
+updateUser(user2);

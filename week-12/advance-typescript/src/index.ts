@@ -7,18 +7,26 @@ interface User{
 }
 
 // Pick
-
 type UpdateProps = Pick<User, 'name' | 'age' | "email">;
 
-function updateUser(updatedProps:UpdateProps){
+// Partial 
+type UpdatePropsOptinal = Partial<UpdateProps>;
+ 
+function updateUser(updatedProps:UpdatePropsOptinal){
     // hit the db
-    console.log(`Update user: \nName: ${updatedProps.name} \nAge: ${updatedProps.age} \nEmail: ${updatedProps.email}`);
+    console.log(`Updated user: \nName: ${updatedProps.name} \nAge: ${updatedProps.age} \nEmail: ${updatedProps.email}`);
 }
 
-const user = { 
+const user1 = { 
     name : "yash",
     age : 23,
     email : "contactyashtyagi@gmail.com"
 }
 
-updateUser(user);
+const user2 = { 
+    name : "yash",
+    age : 23,
+}
+
+updateUser(user1);
+updateUser(user2);
