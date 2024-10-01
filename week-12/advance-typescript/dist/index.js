@@ -1,7 +1,7 @@
 "use strict";
 function updateUser(updatedProps) {
     // hit the db
-    console.log(`Update user: \nName: ${updatedProps.name} \nAge: ${updatedProps.age} \nEmail: ${updatedProps.email}`);
+    console.log(`Updated user: \nName: ${updatedProps.name} \nAge: ${updatedProps.age} \nEmail: ${updatedProps.email}`);
 }
 const user1 = {
     name: "yash",
