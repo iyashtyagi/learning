@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/readOnly.ts","./src/recordAndMap.ts"],"version":"5.6.2"}
+{"root":["./src/exclude.ts","./src/index.ts","./src/readOnly.ts","./src/recordAndMap.ts"],"version":"5.6.2"}
