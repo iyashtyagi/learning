@@ -132,9 +132,69 @@ const userData:UserData = {
     password: "234rfnd"
 }
 
-await insertDataWithTransactions(userData, userAddressData);
+// without join - 2 queries to get all the details of the users and their address 
+// await logUserTable();
+// await logAddressTable();
 
-await logUserTable();
-await logAddressTable();
+// with join/innerJoin - return all the matched items and existed in both table
+async function joinOrInnerJoin(){
+    const query = `SELECT u.id, u.username, u.email, u.password, a.city, a.street, a.country, a.pincode FROM users2 u 
+        JOIN address2 a ON u.id = a.user_id`;
+    try{
+        const res = await client.query(query);
+        console.log(res.rows);
+        console.log("----------------------------------------------");
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+// with leftJoin - return all the items from the left table + matched one
+async function leftJoin(){
+    const query = `SELECT u.id, u.username, u.email, u.password, a.city, a.street, a.country, a.pincode FROM users2 u 
+        LEFT JOIN address2 a ON u.id = a.user_id`;
+    try{
+        const res = await client.query(query);
+        console.log(res.rows);
+        console.log("----------------------------------------------");
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+// with rightJoin - return all the items from the right table + matched one
+async function rightJoin(){
+    const query = `SELECT u.id, u.username, u.email, u.password, a.city, a.street, a.country, a.pincode FROM users2 u 
+        RIGHT JOIN address2 a ON u.id = a.user_id`;
+    try{
+        const res = await client.query(query);
+        console.log(res.rows);
+        console.log("----------------------------------------------");
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+// with fullJoin - mitxure of left and right join
+async function fullJoin(){
+    const query = `SELECT u.id, u.username, u.email, u.password, a.city, a.street, a.country, a.pincode FROM users2 u 
+        FULL JOIN address2 a ON u.id = a.user_id`;
+    try{
+        const res = await client.query(query);
+        console.log(res.rows);
+        console.log("----------------------------------------------");
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+await joinOrInnerJoin();
+await leftJoin();
+await rightJoin();
+await fullJoin();
 
 await client.end();
