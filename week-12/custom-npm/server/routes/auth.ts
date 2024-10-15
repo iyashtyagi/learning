@@ -2,10 +2,25 @@ import jwt from "jsonwebtoken";
 import express from 'express';
 import { authenticateJwt, SECRET } from "../middleware/";
 import { User } from "../db";
+import { z } from "zod";
+
+const signupInput = z.object({
+  username: z.string(),
+  password: z.string() 
+})
+
+type SignupParams = z.infer<typeof signupInput>;
 
 const router = express.Router();
 
   router.post('/signup', async (req, res) => {
+    const parsedResponse = signupInput.safeParse(req.body);
+    if(!parsedResponse.success){
+      return res.status(411).json({
+        msg: "error while parsing"
+      })
+    }
+
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     if (user) {
