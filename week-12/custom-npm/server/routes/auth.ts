@@ -2,16 +2,17 @@ import jwt from "jsonwebtoken";
 import express from 'express';
 import { authenticateJwt, SECRET } from "../middleware/";
 import { User } from "../db";
+import { signupInput } from "@yashtyagi/common";
 
 const router = express.Router();
 
   router.post('/signup', async (req, res) => {
-    // const parsedResponse = signupInput.safeParse(req.body);
-    // if(!parsedResponse.success){
-    //   return res.status(411).json({
-    //     msg: "error while parsing"
-    //   })
-    // }
+    const parsedResponse = signupInput.safeParse(req.body);
+    if(!parsedResponse.success){
+      return res.status(411).json({
+        msg: "error while parsing"
+      })
+    }
 
     const { username, password } = req.body;
     const user = await User.findOne({ username });
