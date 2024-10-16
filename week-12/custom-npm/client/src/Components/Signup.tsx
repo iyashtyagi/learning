@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {useSetRecoilState} from "recoil";
 import {authState} from "../store/authState.js";
+import { SignupParams } from "@yashtyagi/common";
 
 const Signup = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState<SignupParams["username"]>('');
+    const [password, setPassword] = useState<SignupParams["password"]>('');
 
     const handleSignup = async () => {
         const response = await fetch('http://localhost:3000/auth/signup', {
