@@ -19,12 +19,15 @@ model User {
   password String
   firstName String?
   lastName String?
+  email String @unique
+  todos Todos[]
 }
 
-model Todos{
+model Todos {
   id Int @id @default(autoincrement())
   title String
   description String
   done Boolean @default(false)
   userId Int
+  user User @relation(fields: [userId], references: [id])
 }
